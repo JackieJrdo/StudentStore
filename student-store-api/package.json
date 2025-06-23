@@ -5,18 +5,20 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/server.js",
-    "seed":   "npx prisma db seed",
+    "seed": "npx prisma db seed",
     "dev": "node ./src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^6.7.0",
+    "@prisma/client": "^6.10.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "pg": "^8.11.3"
+    "morgan": "^1.10.0",
+    "pg": "^8.11.3",
+    "prisma": "^6.10.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
