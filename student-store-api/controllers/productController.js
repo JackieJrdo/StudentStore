@@ -2,16 +2,35 @@
 
 // controller file to be able to call these in routes
 
-const express = require("express");
+const express = require("express"); // remove?
 const prisma = require("../models/prismaClient")
 
 
 // Get every product
 
+
 exports.getAll = async (req, res) => {
-    const products = await prisma.product.findMany();
-    console.log(products)
+
+    const {category, sort} = req.query;
+    const where = {};
+    const orderBy = [];
+
+    // filter by category
+    if (category){
+        where.category = category;
+    }
+
+    // sorting 
+    if (sort === "name" || sort === "price"){
+        orderBy.push({ [sort]: "asc" }); // FIXME this can be desc??
+    }
+    
+    const products = await prisma.product.findMany({
+        where,
+        orderBy: orderBy.length ? orderBy : undefined,
+    });
     res.json(products)
+
 }
 
 // Get by ID
