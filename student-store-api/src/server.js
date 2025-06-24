@@ -5,6 +5,8 @@ const morgan = require("morgan");
 const app = express();
 const cors = require("cors");
 const productRoutes = require("../routes/productRoutes")
+const orderRoutes = require("../routes/orderRoutes")
+const orderItemRoutes = require("../routes/orderItemRoutes")
 
 
 const corsOption = {
@@ -15,6 +17,8 @@ app.use(cors(corsOption));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use("/product", productRoutes)
+app.use("/order", orderRoutes)
+app.use("/orderItem", orderItemRoutes)
 
 
 const PORT = process.env.PORT || 3000
