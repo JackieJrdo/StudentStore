@@ -20,4 +20,25 @@ model Product {
   image_url       String
   price           Int
   category        String
+  orderItem       OrderItem[]
+}
+
+model Order {
+  id              Int     @id @default(autoincrement())
+  customer        String  
+  total           Int
+  status          String
+  createdAt       DateTime @default(now())
+  orderItem       OrderItem[]
+}
+
+model OrderItem {
+
+  id              Int @id @default(autoincrement())
+  orderId         Int 
+  order Order     @relation (fields: [orderId], references: [id] )
+  productId       Int
+  product Product @relation (fields: [productId], references: [id])
+  quantity        Int
+  price           Decimal
 }
