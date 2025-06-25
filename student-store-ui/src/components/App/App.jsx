@@ -23,6 +23,26 @@ function App() {
   const [error, setError] = useState(null);
   const [order, setOrder] = useState(null);
 
+
+  useEffect(() => { // runs after component renders essentially
+
+    setIsFetching(true);
+
+    // fetch function
+    const fetchProducts = async () => {
+      try {
+        // get request using endpoint i made
+        const response = await axios.get("http://localhost:3000/product");
+        setProducts(response.data); // setter function to set state with data from the response
+      } catch (error) {
+        setError("Error fetching products")
+      }
+      setIsFetching(false);
+    }
+
+    fetchProducts();
+  }, []) // empty dependency array, runs only once
+
   // Toggles sidebar
   const toggleSidebar = () => setSidebarOpen((isOpen) => !isOpen);
 
