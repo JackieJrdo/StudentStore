@@ -111,11 +111,16 @@ Deployed Application (optional): [Student Store Deployed Site](ADD_LINK_HERE)
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+I think the topics discussed in my labs did prepare me for certain concrete subjects like CRUD and endpoints. However, I feel like the project instructions were often unclear or vague. There were also parts of unnecessary code and certain bugs that we had no way of accounting for, expecially when connecting the backend to the frontend. Given we did not build the front end, there was a disconnect on my part that I felt I was not ready for based on lessons when it came to pin pointing exact parts of code and functions that relayed vital parts of the functionality. We had to rely on our teammates and instructors much more than the instructions, which often set back the whole cohot because there was uncertainty with what instructions simplified too much.
+
+
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
+
 Add your response here
+
+Wtih more time I would have been able to spend more time on understanding the structure of the frontend and how we had to communicate specific bits of information
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
