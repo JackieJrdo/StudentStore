@@ -1,13 +1,9 @@
 # Student Store Starter Code
 
 
-📝 `NOTE` Use this template to initialize the contents of a README.md file for your application. As you work on your assignment over the course of the week, update the required or stretch features lists to indicate which features you have completed by changing `[ ]` to `[x]`. (🚫 Remove this paragraph before submitting your assignment.)
-
 ## Unit Assignment: Student Store
 
-Submitted by: **NAME**
-
-Deployed Application (optional): [Student Store Deployed Site](ADD_LINK_HERE)
+Submitted by: **Jaqueline Jurado**
 
 ### Application Features
 
@@ -105,7 +101,14 @@ Deployed Application (optional): [Student Store Deployed Site](ADD_LINK_HERE)
 
 `TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
 
-`ADD_EMBEDDED_CODE_HERE`
+<div>
+    <a href="https://www.loom.com/share/1494c62a1df644c38e5629b2d0ab23fb">
+      <p>Student Store - 26 June 2025 - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/1494c62a1df644c38e5629b2d0ab23fb">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/1494c62a1df644c38e5629b2d0ab23fb-96a54cce352f67b3-full-play.gif">
+    </a>
+  </div>
 
 ### Reflection
 
