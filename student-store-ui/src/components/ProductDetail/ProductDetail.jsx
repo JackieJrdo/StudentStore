@@ -5,13 +5,33 @@ import NotFound from "../NotFound/NotFound";
 import { formatPrice } from "../../utils/format";
 import "./ProductDetail.css";
 
-function ProductDetail({ addToCart, removeFromCart, getQuantityOfItemInCart }) {
+function ProductDetail({products, addToCart, removeFromCart, getQuantityOfItemInCart }) {
   
   const { productId } = useParams();
-  const [product, setProduct] = useState(null);
-  const [isFetching, setIsFetching] = useState(false);
+  const [product, setProduct] = useState(null); // stores product details
+  const [isFetching, setIsFetching] = useState(false); // set to true
   const [error, setError] = useState(null);
 
+
+  useEffect(() => {
+
+    // const functino here to get product details 
+    const fetchProductDetails = async() => {
+      setIsFetching(true);
+
+      try {
+        const response = products.find((product) => product.id === parseInt(productId))
+        setProduct(response); // need to update the product state with what i fetched
+        setIsFetching(false);
+      } catch (error) {
+        setError("Error fetching product details")
+        console.log(error.message)
+      }
+
+    };
+    fetchProductDetails();
+
+  }, [])
 
   if (error) {
     return <NotFound />;

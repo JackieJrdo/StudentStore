@@ -2,7 +2,11 @@
 const prisma = require("../models/prismaClient")
 
 exports.getAll = async (req, res) => {
-    const orders = await prisma.order.findMany();
+    const orders = await prisma.order.findMany({
+        include: {
+            orderItem: true,
+        }
+    });
     console.log(orders)
     res.json(orders)
 }
@@ -46,26 +50,34 @@ exports.createOrderItems = async(req, res) => {
 
 exports.createOrderTotal = async(req, res) => {
     const id = Number(req.params.id);
-    const { productId, quantity, price  } = req.body;
-    console.log(req.body)
 
-    if(!productId || !quantity|| !price){
-        return res.status(400).json({ error: "product id, quantity, and price are needed"})
-    }
-    
     try {
-        const orderItem = await prisma.orderItem.create({ data: {
-            orderId: id,
-            productId: parseInt(productId),
-            quantity,
-            price
 
-        }})
-        console.log(orderItem)
-        res.status(201).json(orderItem);
+        let orderTotal = 0;
+
+        const order = await prisma.orderItem.findMany({ 
+            where: { id: id }, // get the order id for the order
+            },
+        )
+
+        // do functionality of calculating total for each item and adding it up then return
+        for (const orderItem of order){
+            console.log(order);
+            orderTotal += orderItem.price * orderItem.quantity;
+            // orderTotal += orderItem.price;
+        }
+
+        // Update the order total 
+        const updatedTotal = await prisma.order.update({
+            where: { id: id },
+            data: { total: orderTotal },
+            });
+
+        console.log("Updates total", updatedTotal)
+        res.status(201).json(updatedTotal);
 
     } catch (error) {
-        res.status(500).json({error: "orderItem not created"})
+        res.status(500).json({error: "order Total couldnt be calculated"})
     }
 
 }
@@ -73,13 +85,22 @@ exports.createOrderTotal = async(req, res) => {
 
 // post
 exports.create =  async (req, res) => {
-    const { customer, total, status, createdAt } = req.body;
+    const { customer, total, status, orderItem } = req.body;
     const newOrder = await prisma.order.create({ data: {
         customer,
         total,
         status,
-        createdAt
+        orderItem: {
+            create: orderItem.map(item => ({
+                productId: item.productId,
+                quantity: item.quantity,
+                price: item.price
+            })) 
+        }
     }, 
+    include: {
+        orderItem: true,
+    }
     })
     res.status(201).json(newOrder);
 };
@@ -88,15 +109,22 @@ exports.create =  async (req, res) => {
 // put or update
 exports.update = async (req, res) => {
     const id = Number(req.params.id);
-    const { customer, total, status, createdAt } = req.body;
+    const { customer, total, status, orderItem} = req.body;
+
     const updatedOrder = await prisma.order.update({
         where: { id },
-        data:{
-            customer,
-            total,
-            status,
-            createdAt 
-        }
+        data: {customer, total, status,
+            orderItem: {
+                create: orderItem.map(item => ({
+                    productId: item.productId,
+                    quantity: item.quantity,
+                    price: item.price
+                })) 
+            }
+        },
+        // include: {
+        //     orderItem: true,
+        // }
     });
     res.json(updatedOrder);
 };

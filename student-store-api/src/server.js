@@ -9,11 +9,11 @@ const orderRoutes = require("../routes/orderRoutes")
 const orderItemRoutes = require("../routes/orderItemRoutes")
 
 
-const corsOption = {
-    origin: "https://localhost:5173",
-// change this link to the front end link
-}
-app.use(cors(corsOption));
+// const corsOption = {
+//     origin: "https://localhost:5173",
+// // change this link to the front end link
+// }
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 app.use("/product", productRoutes)
