@@ -36,7 +36,7 @@ exports.getAll = async (req, res) => {
 // Get by ID
 
 exports.getById = async (req, res) => {
-    const id = Number(res.params.id);
+    const id = Number(req.params.id);
     const product = await prisma.product.findUnique({where: {id}});
     if (!product){
         return res.status(404).json({error: "Not Found :( !"});

@@ -7,7 +7,7 @@ function ProductCard({ product, quantity, addToCart, removeFromCart }) {
   return (
     <div className="ProductCard">
       <div className="media">
-        <Link to={`/${product.id}`}>
+        <Link to={`/products/${product.id}`}>
           {product.image_url ? <img src={product.image_url} alt="product cover" /> : <img src={codepath} alt="product cover" />}
         </Link>
       </div>

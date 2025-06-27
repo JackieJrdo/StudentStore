@@ -18,7 +18,7 @@ model Product {
   name            String  @unique
   description     String?
   image_url       String
-  price           Int
+  price           Decimal
   category        String
   orderItem       OrderItem[]
 }
@@ -26,7 +26,7 @@ model Product {
 model Order {
   id              Int     @id @default(autoincrement())
   customer        String  
-  total           Int
+  total           Decimal
   status          String
   createdAt       DateTime @default(now())
   orderItem       OrderItem[]
@@ -36,9 +36,9 @@ model OrderItem {
 
   id              Int @id @default(autoincrement())
   orderId         Int 
-  order Order     @relation (fields: [orderId], references: [id] )
+  order Order     @relation (fields: [orderId], references: [id], onDelete: Cascade)
   productId       Int
-  product Product @relation (fields: [productId], references: [id])
+  product Product @relation (fields: [productId], references: [id], onDelete: Cascade)
   quantity        Int
   price           Decimal
 }
